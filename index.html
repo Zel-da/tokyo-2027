@@ -78,6 +78,7 @@ h3{font-size:13px;font-weight:600;color:var(--mute);margin:28px 0 8px}
 .leaflet-tile-pane{filter:grayscale(1) contrast(.9) brightness(1.04)}
 @media (prefers-color-scheme: dark){.leaflet-tile-pane{filter:grayscale(1) invert(.92) contrast(.85) brightness(.9)}}
 .stop span{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #17171A;color:#17171A;font-size:9px;font-weight:700}
+.stop.gacha span{width:22px;height:22px;border-color:#7C3AED;font-size:12px}
 .stop.cafe span{border-color:#B45309;font-size:10px}
 .mv{position:relative;width:40px;height:46px}
 .mv b{position:absolute;left:2px;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:19px;background:#fff;border:2.5px solid var(--mc);box-shadow:0 6px 14px rgba(0,0,0,.25);animation:hop .9s ease-in-out infinite}
@@ -231,6 +232,8 @@ const TIPS=[{"h": "교통 · 패스 대신 Suica", "li": ["도쿄 서브웨이 �
 const COST={"rows": [["1/1 · 교통, 스카이트리, 점심·저녁, 디저트", "¥12,950"], ["1/2 · 교통, 근대미술관, 시부야 스카이, 코메다·판초·토리엔, 카페", "¥16,700"], ["1/3 · 교통, 팀랩(B안은 미술관 ¥2,400), 점심, 공항 저녁", "¥13,700"], ["코인락커 · 간식 여유분", "¥3,200"]], "total": "¥46,550", "total4": "¥186,200", "note": "교통 ¥5,000 · 입장료 ¥11,900(스카이트리·팀랩은 날짜별 변동가를 넉넉히 잡음) · 식사·카페 ¥26,450 · 기타 ¥3,200. 가장 비싼 끼니는 1/1 저녁 약 ¥5,500이에요. 한국 쪽은 주차 약 ₩13,500, 통행료 약 ₩10,000, 인천공항 아침 1인 약 ₩10,000이 더 들어요. B안(서양미술관)을 고르면 1인 약 ¥300 줄어요(팀랩 대신 터너전 ¥2,400, 로얄 커피 포함)."};
 
 /* ================= 공통 ================= */
+const GACHA=[{"day": "1/1 · 나리타 → 오시아게 → 아사쿠사", "list": [{"n": "나리타 T2 가챠 코너 (JAPANESE CAPSULE TOY GACHA)", "k": "가챠 100종 이상", "r": "동선 위 · 도착하자마자", "w": "T2 지하 1층, 철도 개찰구 나와서 출발 로비 쪽 엘리베이터 옆", "h": "공항 시간", "x": "여기서 100엔 동전을 바꿔 두면 좋아요. 2022년 기사 기준이라 현재 상태는 미확인이에요. T1 5층에도 코너가 있어서 1/3 출국 때도 들를 수 있어요.", "u": "https://www.airtrip.jp/travel-column/16404", "m": [35.7732, 140.38721]}, {"n": "가샤폰 반다이 공식숍 도쿄 소라마치점", "k": "반다이 가샤폰 약 240대", "r": "동선 위 · 소라마치 4층", "w": "오시아게역과 바로 연결된 소라마치 4층", "h": "10:00–21:00 (소라마치)", "x": "반다이 공식이라 신상이 빨리 들어와요. 63℃ 젤라토와 같은 층이에요. 현재 영업 여부는 미확인이라 소라마치 층별 안내에서 확인하세요.", "u": "https://www.tokyo-solamachi.jp/", "m": [35.71024, 139.81195]}, {"n": "gashacoco 아사쿠사 (ガシャココ浅草)", "k": "가챠 678대 · 2025년 12월 오픈", "r": "동선 위 · 가미나리몬 1분", "w": "浅草1-3-4 K-雷門 빌딩 2층", "h": "10:00–20:00", "x": "1/1 밤과 1/3 낮 두 번 지나가요. 1/1 저녁 식당 바로 근처예요. 결제 방법과 정월 영업은 미확인이에요.", "u": "https://san-tatsu.jp/pressrelease/490109/", "m": [35.7111, 139.79578]}, {"n": "가샤폰 공식숍 아사쿠사 하나야시키점", "k": "가챠 300~420대 · 2026년 오픈", "r": "동선에서 도보 8분 · 센소지 뒤편", "w": "하나야시키 놀이공원 바깥 무료 구역", "h": "10:00–18:00 (계절·날씨에 따라 변동)", "x": "<b>18시에 일찍 닫아요.<\/b> 1/3 낮 센소지 뒤에 들르기 좋아요.", "u": "https://bandainamco-am.co.jp/en/others/capsule-toy-store/store/hanayashiki/?lang=en", "m": [35.71519, 139.79498]}, {"n": "히키후네 숙소 근처 편의점 (이치방쿠지)", "k": "쿠지", "r": "숙소 근처", "w": "로손·패밀리마트 등", "h": "24시간", "x": "로손에서 「젤다 하이랄 컬렉션」(12/5 발매, ¥790)을 팔아요. 선착순이라 1/1엔 거의 다 팔렸을 수 있어요. 1kuji.com 상품 페이지의 '取扱店舗検索'으로 히키후네 주변 판매점을 찾아보세요.", "u": "https://1kuji.com/shop_lists"}]}, {"day": "1/2 · 도쿄역 → 시부야 → 하라주쿠 → 신주쿠", "list": [{"n": "가샤폰 반다이 공식숍 @TOKYO STATION", "k": "반다이 가샤폰 · 카드 결제 가능", "r": "황궁 근처 · 도쿄역 야에스 북쪽", "w": "도쿄역 1번가 '도쿄 캐릭터 스트리트' 지하 1층", "h": "10:00–20:30 (연말연시는 문의 03-3210-0077)", "x": "같은 층에 포켓몬스토어, 산리오, 가면라이더, 짱구 숍도 있어요. 근대미술관 대신 도쿄역 쪽으로 가는 날이면 꼭 들르세요.", "u": "https://www.tokyoeki-1bangai.co.jp/shop/", "m": [35.68125, 139.76724]}, {"n": "#C-pla 시부야 센터가이점", "k": "가챠 2,238대 · #C-pla 전국 최대", "r": "동선 위 · 시부야역 2분", "w": "渋谷平和ビル 지하 1층~2층", "h": "10:00–23:00 (지하는 22:30까지)", "x": "점심(판초) 바로 근처예요. 외화 환전기도 있다고 해요.", "u": "https://www.fun-japan.jp/jp/articles/13963"}, {"n": "이치방쿠지 공식숍 시부야 MAGNET점", "k": "쿠지 공식숍", "r": "동선 위 · 스크램블 교차로 앞", "w": "MAGNET by SHIBUYA109 지하 1층", "h": "10:00–21:00", "x": "「귀멸의 칼날 ～남매의 오니～」(12/21, ¥850)는 공식숍과 온라인에서만 팔아요. 교차로 건너는 17:20 무렵 들르면 돼요.", "u": "https://www.gltjp.com/ja/directory/item/17771/", "m": [35.65977, 139.70077]}, {"n": "시부야 파르코 6층 (닌텐도 도쿄 · 포켓몬센터)", "k": "쿠지 · 캐릭터숍", "r": "동선 위 · 14:00", "w": "시부야 파르코 6층", "h": "10:00–21:00", "x": "닌텐도 도쿄에서 「젤다 하이랄 컬렉션」 쿠지(¥790)를 팔아요. 포켓몬 30주년 쿠지는 포켓몬센터에서는 안 팔아요(공식 안내). 매장 안 가챠는 미확인이에요.", "u": "https://1kuji.com/products/zelda5"}, {"n": "SQEX CAPSULE GARDEN (스퀘어에닉스)", "k": "스퀘어에닉스 전용 가챠", "r": "시부야역 남쪽 · 도보 5분", "w": "시부야 사쿠라스테이지 SHIBUYA사이드 3층", "h": "미확인", "x": "드래곤퀘스트·파이널판타지 캡슐이 많아요.", "u": "https://dengekionline.com/article/202511/56871"}, {"n": "MEGA 돈키호테 시부야 본점", "k": "높이 2m 대형 가챠", "r": "동선 근처 · 센터가이", "w": "시부야 도겐자카", "h": "24시간 영업으로 알려짐 (확인)", "x": "2026년 4월에 들어온 거대 가챠가 있어요. 사진 찍기 좋아요.", "u": "https://livejapan.com/ja/in-tokyo/in-pref-tokyo/in-shibuya/article-a0005979/"}, {"n": "#C-pla+ 하라주쿠 다케시타도리점", "k": "가챠 1,002대", "r": "동선 근처 · 하라주쿠역 2분", "w": "다케시타도리 1~2층 (神宮前1-16-3)", "h": "9:30–21:00", "x": "1/2는 메이지신궁 인파로 다케시타도리가 아주 붐벼요. 하라주쿠역으로 갈 때 잠깐 들르세요.", "u": "https://www.fun-japan.jp/jp/articles/13963", "m": [35.67136, 139.70422]}, {"n": "가챠가챠노모리 신주쿠 서브나드점", "k": "가챠 약 1,050대", "r": "동선 위 · 신주쿠 동쪽 출구 2분", "w": "지하상가 서브나드 (가부키초 1초메)", "h": "10:30–21:00", "x": "3D 고양이 보러 동쪽 출구로 갈 때 바로 아래예요. 정월 영업은 미확인이에요.", "u": "https://www.fun-japan.jp/jp/articles/13963", "m": [35.6932, 139.7016]}]}, {"day": "1/3 · 우에노(B안) → 아사쿠사 → 나리타", "list": [{"n": "드림캡슐 우에노 마루이점", "k": "가챠 613대", "r": "B안 동선 위 · 우에노역 1분", "w": "우에노 마루이 2층", "h": "11:00–20:00", "x": "B안(미술관)을 고르면 우에노에서 들를 수 있어요. 다만 11시에 열어요. 현재 영업은 한 번 더 확인하세요.", "u": "https://www.fun-japan.jp/jp/articles/13963", "m": [35.71023, 139.77579]}, {"n": "gashacoco 아사쿠사 · 하나야시키점 (두 번째 기회)", "k": "위 1/1 목록 참고", "r": "동선 위 · 14:30 나카미세 무렵", "w": "가미나리몬 1분 / 센소지 뒤 8분", "h": "20:00 / 18:00까지", "x": "1/1에 못 뽑은 게 있으면 여기서 다시 노려요.", "u": "https://san-tatsu.jp/pressrelease/490109/"}, {"n": "나리타 T1 5층 가챠 코너", "k": "가챠", "r": "동선 위 · 출국 전", "w": "T1 5층 (보안검사 전)", "h": "공항 시간", "x": "남은 동전을 다 쓰기 좋은 마지막 장소예요. 2022년 기사 기준이라 현재 상태는 미확인이에요.", "u": "https://www.airtrip.jp/travel-column/16404", "m": [35.7654, 140.38599]}]}, {"day": "동선 밖 · 대형 성지 (따로 시간을 내면)", "list": [{"n": "가샤폰 백화점 이케부쿠로 총본점 (ガシャポンのデパート)", "k": "가챠 3,000~4,000대 이상 · 세계 최대급", "r": "신주쿠에서 JR 9분 + 도보 8분", "w": "이케부쿠로 선샤인시티 월드임포트마트 3층", "h": "10:00–21:00", "x": "같은 층에 <b>이치방쿠지 공식숍 이케부쿠로 총본점<\/b>, 같은 건물에 가챠가챠노모리(약 1,240대)도 있어요. 1/2 신주쿠 저녁 전에 1시간 반 정도 빼면 다녀올 수 있어요. 선샤인시티의 1/1·1/2 영업시간은 미확인이에요.", "u": "https://resemom.jp/article/2026/11/11/88265.html", "m": [35.72784, 139.71999]}, {"n": "아키하바라 가챠폰 회관 (秋葉原ガチャポン会館)", "k": "가챠 약 500대 · 2002년부터 운영한 노포", "r": "우에노에서 약 10분", "w": "아키하바라 스에히로초역 근처", "h": "평일 11:00–20:00, 일·공휴일 11:00–19:00 (출처마다 다름)", "x": "상품이 자주 바뀌고 <b>오래된·희귀한 캡슐<\/b>이 섞여 있기로 유명한 곳이에요. B안(우에노)을 고르면 미술관 뒤에 다녀오기 쉬워요.", "u": "https://www.walkerplus.com/spot/ar0313s564740/data.html", "m": [35.70189, 139.77132]}, {"n": "가샤폰 백화점 아키하바라점", "k": "가챠 500대", "r": "우에노에서 JR 4분", "w": "namco 아키하바라 4층 (아키하바라역 1분)", "h": "10:00–23:00", "x": "가챠폰 회관과 걸어서 5분 거리라 함께 돌 수 있어요.", "u": "https://www.fun-japan.jp/jp/articles/13963"}, {"n": "#C-pla premium 긴자", "k": "가챠 1,000대", "r": "도쿄역에서 도보 약 10분", "w": "마로니에게이트 긴자1 4층", "h": "11:00–21:00", "x": "프리미엄 라인(고가·대형 캡슐)이 많아요.", "u": "https://www.fun-japan.jp/jp/articles/13963"}, {"n": "나카노 브로드웨이 (빈티지·중고)", "k": "만다라케 30여 점포 · 가챠 스폿 다수", "r": "신주쿠에서 JR 주오선 쾌속 5분", "w": "나카노역 북쪽 출구", "h": "점포마다 다름", "x": "옛날 캡슐토이와 피규어 중고를 찾으려면 가장 유명한 곳이에요. 중고 캡슐 전문점이 따로 있는지는 미확인이에요.", "u": "https://www.city.tokyo-nakano.lg.jp/kanko/category-search/anime.files/16.pdf"}]}];
+const KUJI=[["젤다 하이랄 컬렉션", "12/5", "¥790", "로손, 닌텐도 도쿄"], ["포켓몬 30주년 vol.1 재판매", "12/14", "¥750", "서점·하비숍·공식숍 (포켓몬센터 제외)"], ["토이스토리", "12/19", "¥781", "확인"], ["귀멸의 칼날 ～남매의 오니～", "12/21", "¥850", "공식숍(시부야·이케부쿠로)·온라인"], ["테니스의 왕자", "12/24", "¥800", "확인"]];
 const PHRASES=[["4명입니다", "4人です"], ["예약했어요", "予約しています"], ["계산해 주세요", "お会計お願いします"], ["카드 되나요?", "カードは使えますか？"], ["화장실은 어디예요?", "トイレはどこですか？"], ["면세 되나요?", "免税できますか？"], ["이거 주세요", "これをください"], ["포장해 주세요", "持ち帰りでお願いします"], ["이 주소로 가 주세요 (숙소)", "このホテルまで<br>お願いします<small>東京都墨田区<span class=\"nw\">向島4-12-5</span><br>unito residence 曳舟</small>"]];
 const $=s=>document.querySelector(s);
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -251,7 +254,7 @@ function rkey(id){return id==="d3"&&optSel()==="b"?"d3b":id}
 const yenify=h=>h.replace(/¥(\d[\d,]*)(?:~(\d[\d,]*))?/g,(m,a,b)=>`<span class="yen" data-a="${a.replace(/,/g,"")}"${b?` data-b="${b.replace(/,/g,"")}"`:""}>${m}</span>`);
 
 /* ================= 렌더 ================= */
-const VIEWS=[{id:"prep",tab:"준비"},{id:"d1",tab:"1일"},{id:"d2",tab:"2일"},{id:"d3",tab:"3일"},{id:"food",tab:"맛집"},{id:"info",tab:"정보"}];
+const VIEWS=[{id:"prep",tab:"준비"},{id:"d1",tab:"1일"},{id:"d2",tab:"2일"},{id:"d3",tab:"3일"},{id:"food",tab:"맛집"},{id:"gacha",tab:"가챠",son:true},{id:"info",tab:"정보"}];
 
 function meta(it){
   const tg=(it.tags||[]);
@@ -318,6 +321,31 @@ function foodHTML(){
     <div class="chips">${areas}</div>${rows}
     <p class="foot">2026년 11월 25일 조사 · 점수는 타베로그 기준</p></section>`;
 }
+function gachaHTML(){
+  const rows=GACHA.map(g=>`<h3>${g.day}</h3><ul class="list">${g.list.map(x=>`
+    <li class="row" style="grid-template-columns:1fr"><details class="it"><summary style="grid-template-columns:1fr 14px"><span><span class="tt">${x.n}</span><span class="mt">${x.k} · ${x.r}</span></span><span class="chev">›</span></summary>
+    <div class="body" style="padding-left:0"><dl class="kv"><dt>위치</dt><dd>${x.w}</dd><dt>영업</dt><dd>${x.h}</dd><dt>메모</dt><dd>${x.x}</dd></dl>
+    <div class="links">${x.m?`<a href="https://www.google.com/maps/dir/?api=1&travelmode=transit&destination=${x.m[0]},${x.m[1]}" target="_blank" rel="noopener">길찾기</a>`:`<a href="${MAPQ(x.n.replace(/\s*\(.*$/,"")+" "+x.w)}" target="_blank" rel="noopener">구글맵</a>`}<a href="${x.u}" target="_blank" rel="noopener">출처</a></div></div></details></li>`).join("")}</ul>`).join("");
+  return `<section class="view" id="v-gacha" hidden>
+    <h2>가챠 · 쿠지 지도</h2><p class="lead">아들 전용 탭이에요. 동선 위 가챠 전문점과 이치방쿠지 파는 곳, 따로 갈 만한 대형 성지를 날짜순으로 모았어요. 날짜 탭 지도에도 🎰로 표시돼요.</p>
+    <div class="card"><h4>준비물</h4><ul style="margin:0;padding-left:18px;font-size:14px">
+      <li><b>100엔 동전</b>을 많이 챙기세요. 가챠는 한 번에 보통 ¥300~500이에요. 큰 전문점에는 지폐 환전기가 있지만 매장마다 달라요.</li>
+      <li>반다이 '스마트 가샤폰'은 Suica로, 일부 기계는 PayPay로도 돼요(일부 기계만).</li>
+      <li>연휴(1/1~1/3) 영업은 건물마다 12월 중순쯤 발표돼요. 가기 전에 확인하세요.</li></ul></div>
+    <details class="fold" style="margin-top:16px"><summary>이치방쿠지가 뭐예요? · 여행 때 살 수 있는 쿠지</summary><div class="inner">
+      <p style="margin:0 0 8px">한 장에 ¥750~900인 제비뽑기예요. 긁으면 A상·B상 같은 경품이 나오고, <b>마지막 한 장</b>을 뽑으면 '라스트원상'을 하나 더 받아요. 경품이 다 나가면 끝나서 발매일에 가까울수록 좋은 상이 남아 있어요.</p>
+      <table>${KUJI.map(k=>`<tr><td>${k[0]}<br><span class="small">${k[3]}</span></td><td class="n">${k[1]}<br>${k[2]}</td></tr>`).join("")}</table>
+      <div class="links" style="margin-top:10px"><a href="https://1kuji.com/products" target="_blank" rel="noopener">이치방쿠지 발매 일정</a><a href="https://1kuji.com/shop_lists" target="_blank" rel="noopener">판매점 찾기</a><a href="https://gashapon.jp/" target="_blank" rel="noopener">반다이 가샤폰 신상</a></div>
+      <p class="small" style="margin:8px 0 0">1월 발매분(원피스 1/9 등)은 여행 뒤라서 해당하지 않아요.</p></div></details>
+    ${rows}
+    <p class="foot">2026년 11월 26일 조사 · 미확인 표시가 있는 곳은 출발 전에 한 번 더 확인하세요</p></section>`;
+}
+function isSon(){return myName()==="아들"}
+function updateSon(){
+  const on=isSon(),tab=$("#tab-gacha");if(tab)tab.hidden=!on;
+  if(!on&&!$("#v-gacha").hidden) show("prep");
+  Object.entries(MAPS).forEach(([id,M])=>{if(on&&!M.gl){M.gl=L.layerGroup(GACHA.flatMap(g=>g.list).filter(x=>x.m).map(x=>L.marker(x.m,{icon:L.divIcon({className:"stop gacha",html:"<span>🎰</span>",iconSize:[22,22],iconAnchor:[11,11]})}).bindTooltip(esc(x.n),{direction:"top",offset:[0,-8]}))).addTo(M.map)}else if(!on&&M.gl){M.gl.remove();M.gl=null}});
+}
 function infoHTML(){
   const tips=TIPS.map(t=>`<details class="fold"><summary>${t.h}</summary><div class="inner"><ul>${t.li.map(x=>`<li>${x}</li>`).join("")}</ul></div></details>`).join("");
   const cost=COST.rows.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td></tr>`).join("");
@@ -351,8 +379,8 @@ function infoHTML(){
   </section>`;
 }
 function build(){
-  $("#tabs").innerHTML=VIEWS.map(v=>`<button class="tab" role="tab" id="tab-${v.id}" data-v="${v.id}" aria-selected="false">${v.tab}</button>`).join("");
-  $("#views").innerHTML=yenify(prepHTML()+["d1","d2","d3"].map(id=>dayHTML(DAYMAP[id])).join("")+foodHTML()+infoHTML());
+  $("#tabs").innerHTML=VIEWS.map(v=>`<button class="tab" role="tab" id="tab-${v.id}" data-v="${v.id}" aria-selected="false"${v.son?" hidden":""}>${v.tab}</button>`).join("");
+  $("#views").innerHTML=yenify(prepHTML()+["d1","d2","d3"].map(id=>dayHTML(DAYMAP[id])).join("")+foodHTML()+gachaHTML()+infoHTML());
 }
 
 /* ================= 체크 (공유) ================= */
@@ -387,7 +415,7 @@ function askName(cb){
   const t=document.createElement("div");t.className="toast";t.setAttribute("role","dialog");t.setAttribute("aria-label","이름 입력");
   t.innerHTML='<div class="in"><span>누가 체크했는지 가족에게 보여요. 이름을 알려 주세요</span><input id="toastname" maxlength="8" placeholder="예: 엄마" aria-label="이름"><button id="toastok">저장</button><button id="toastskip">건너뛰기</button></div>';
   document.body.appendChild(t);
-  const done=v=>{if(v){lsSet(NICK_KEY,v);const nk=$("#nick");if(nk)nk.value=v}else lsSet("tokyo27-noname",true);t.remove();const q=pendingAfterName;pendingAfterName=[];q.forEach(f=>f())};
+  const done=v=>{if(v){lsSet(NICK_KEY,v);const nk=$("#nick");if(nk)nk.value=v}else lsSet("tokyo27-noname",true);t.remove();updateSon();const q=pendingAfterName;pendingAfterName=[];q.forEach(f=>f())};
   $("#toastok").onclick=()=>done($("#toastname").value.trim().slice(0,8));
   $("#toastskip").onclick=()=>done("");
   $("#toastname").addEventListener("keydown",e=>{if(e.key==="Enter")done($("#toastname").value.trim().slice(0,8));if(e.key==="Escape")done("")});
@@ -429,6 +457,7 @@ function markNow(){
 }
 function defaultView(){const n=jstNow().date;return n==="2027-01-01"?"d1":n==="2027-01-02"?"d2":n==="2027-01-03"?"d3":"prep"}
 function show(v){
+  if(v==="gacha"&&!isSon()) v="prep";
   if(typeof GEO!=="undefined"&&GEO&&GEO.watch!=null){navigator.geolocation.clearWatch(GEO.watch);GEO.watch=null;["dot","acc","line"].forEach(k=>{if(GEO[k]){GEO[k].remove();GEO[k]=null}});GEO.first=true;document.querySelectorAll(".mylive").forEach(b=>b.hidden=true)}
   if(!VIEWS.some(x=>x.id===v)) v=defaultView();
   VIEWS.forEach(x=>{$("#v-"+x.id).hidden=x.id!==v;const t=$("#tab-"+x.id);t.setAttribute("aria-selected",x.id===v);if(x.id===v)t.scrollIntoView({block:"nearest",inline:"nearest"})});
@@ -532,6 +561,7 @@ async function initMap(id){
   const tokyo=R.map(r=>C[r.p]).filter(p=>p[1]>139.6&&p[1]<139.9);
   const fit=()=>map.fitBounds(L.latLngBounds(tokyo.length?tokyo:R.map(r=>C[r.p])),{padding:[20,20]});fit();
   MAPS[id]={map,segs,mover,idx:0,playing:false,stop:false,fit,R,variant:rk};
+  updateSon();
 }
 const ZOOM={walk:17,subway:14,train:14,car:11,plane:6};
 function capText(s){const md=MODE[s.mode]||MODE.walk;let d="";if(s.meters>0){d=s.meters>=1000?(s.meters/1000).toFixed(1)+"km":s.meters+"m";if(s.mode==="walk")d+=` · ${Math.max(1,Math.round((s.secs||s.meters/1.2)/60))}분`}
@@ -603,7 +633,7 @@ function showBig(i){
 }
 /* ================= 시작 ================= */
 build();
-const nick=$("#nick");nick.value=lsGet(NICK_KEY,"");nick.addEventListener("change",()=>lsSet(NICK_KEY,nick.value.trim().slice(0,8)));
+const nick=$("#nick");nick.value=lsGet(NICK_KEY,"");nick.addEventListener("change",()=>{lsSet(NICK_KEY,nick.value.trim().slice(0,8));updateSon()});
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;try{history.pushState(null,"","#"+b.dataset.v)}catch(_){location.hash=b.dataset.v}show(b.dataset.v);window.scrollTo({top:0})});
 addEventListener("hashchange",()=>show(location.hash.slice(1)));
 $("#views").addEventListener("click",e=>{
@@ -619,7 +649,7 @@ $("#views").addEventListener("click",e=>{
   else if(t.dataset.area!=null){document.querySelectorAll("[data-area]").forEach(c=>c.setAttribute("aria-pressed",c===t));document.querySelectorAll("[data-arealist]").forEach(l=>l.hidden=l.dataset.arealist!==t.dataset.area)}
   else if(t.dataset.copy){const txt=$("#"+t.dataset.copy).textContent;const done=()=>{t.textContent="복사됨";setTimeout(()=>t.textContent="복사",1500)};try{navigator.clipboard.writeText(txt).then(done,()=>{})}catch(_){}}
 });
-show(location.hash.slice(1));paintChecks();markNow();setInterval(()=>{markNow();renderNow()},60e3);loadFx();loadWeather();showWalk();addEventListener("load",()=>{startSync();const v=VIEWS.find(x=>!$("#v-"+x.id).hidden);if(v)initMap(v.id)});
+updateSon();show(location.hash.slice(1));paintChecks();markNow();setInterval(()=>{markNow();renderNow()},60e3);loadFx();loadWeather();showWalk();addEventListener("load",()=>{startSync();const v=VIEWS.find(x=>!$("#v-"+x.id).hidden);if(v)initMap(v.id)});
 if("serviceWorker" in navigator) addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
 </body>
