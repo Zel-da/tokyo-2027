@@ -1,0 +1,39 @@
+name: 엔화 환율 기록 · 저점 알림
+
+on:
+  schedule:
+    - cron: "0 22 * * 1-5"   # 매주 화~토 07:00 KST (전날 유럽중앙은행 고시 반영)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 여행이 끝났으면 중단
+        id: gate
+        run: |
+          if [ "$(TZ=Asia/Seoul date +%F)" \> "2027-01-03" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; fi
+      - name: 환율 갱신
+        if: steps.gate.outputs.skip != '1'
+        run: python scripts/jpy.py
+      - name: 새 저점이면 이슈로 알림
+        if: steps.gate.outputs.skip != '1' && hashFiles('alert.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="$(head -1 alert.md | sed 's/^## //')"
+          gh issue create --title "$title" --body-file alert.md
+          rm alert.md
+      - name: 기록 저장
+        if: steps.gate.outputs.skip != '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rates.json
+          git diff --cached --quiet || git commit -m "환율 기록 $(TZ=Asia/Seoul date +%F)"
+          git push
