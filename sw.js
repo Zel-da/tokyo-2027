@@ -2,7 +2,7 @@
    - 일정·경로·환율: 네트워크를 3초만 기다리고, 늦으면 저장본을 보여 줘요(역 와이파이·지하철 대비).
    - 라이브러리: 설치할 때 미리 저장해요.
    - 지도 타일: 한 번 본 것만 저장해요(최대 800장). */
-const V = "tokyo27-v9";
+const V = "tokyo27-v10";
 const CORE = ["./", "index.html", "paths.json", "rates.json", "manifest.webmanifest", "icons/icon-192.png", "icons/apple-touch-icon.png"];
 const LIBS = [
   "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js",
